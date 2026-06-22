@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图文音乐主页</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{
+            background: #fdfbf5;
+            padding: 30px 0;
+        }
+        /* 右上角悬浮音乐按钮 */
+        .music-wrap{
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 999;
+        }
+        #musicBtn{
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: none;
+            background: #fff;
+            box-shadow: 0 2px 12px #00000020;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        /* 正文容器，居中 */
+        .article{
+            width: 72%;
+            margin: 0 auto 35px;
+            padding: 40px;
+            border: 1px solid #ddd;
+            background: #fff;
+            line-height: 2;
+            font-size: 17px;
+        }
+        /* 照片视频区域，和正文同宽对齐 */
+        .media-area{
+            width: 72%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background: #fff;
+        }
+        .media-area h3{
+            margin-bottom: 15px;
+            font-weight: normal;
+        }
+        /* 图片视频通用样式 */
+        .media-item{
+            max-width: 100%;
+            margin: 8px;
+        }
+        /* 适配手机 */
+        @media(max-width:768px){
+            .article,.media-area{width:92%}
+            #musicBtn{width:60px;height:60px}
+        }
+    </style>
+</head>
+<body>
+    <!-- 悬浮音乐模块 -->
+    <div class="music-wrap">
+        <audio id="bgAudio" loop>
+            <source src="music.mp3" type="audio/mpeg">
+        
+        <button id="musicBtn">音乐</button>
+    </div>
+
+    <!-- 正文区域 -->
+    <div class="article">
+        这里填写你的正文文字内容，支持换行、分段。
+        <br><br>
+        可以写随笔、日记、文案、故事等内容。
+    </div>
+
+    <!-- 照片/视频区域 -->
+    <div class="media-area">
+        <h3>照片 / 视频</h3>
+        <img class="media-item" src="pic.jpg">
+    </div>
+
+    <script>
+        // 音乐播放切换逻辑
+        const audio = document.getElementById('bgAudio');
+        const btn = document.getElementById('musicBtn');
+        let playFlag = false;
+        btn.onclick = function(){
+            if(!playFlag){
+                audio.play();
+                btn.innerText = "暂停";
+                playFlag = true;
+            }else{
+                audio.pause();
+                btn.innerText = "音乐";
+                playFlag = false;
+            }
+        }
+    </script>
+</body>
+</html>
